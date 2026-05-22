@@ -1,9 +1,6 @@
-#include <behaviors.dtsi>
 #include "keypos_def/keypos_36keys_totem.h"     // keyposition helpers (Totem 36-key)
+#include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/outputs.h>
-#include <dt-bindings/zmk/ext_power.h>
 
 / {
     keymap {
@@ -11,16 +8,33 @@
 
         base_layer {
             bindings = <
-//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮         ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-   &kp Q         &kp W         &kp E         &kp R         &kp T                   &kp Y         &kp U         &kp I         &kp O         &kp P
-//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤         ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-   &kp CTL A     &kp ALT S     &kp GUI D     &kp SFT F     &kp G                   &kp H         &kp SFT J     &kp GUI K     &kp ALT L     &kp CTL SQT
-//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤         ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-   &kp Z         &kp X         &kp C         &kp V         &kp B                   &kp N         &kp M         &kp COMMA     &kp DOT       &kp QMARK
-//╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤         ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
-                               &mt ALT ESC   &mt GUI F13   &lt NUM TAB             &mt SFT RET   &lt NAV SPC   &kp BSPC
-//                            ╰─────────────┴─────────────┴─────────────╯         ╰─────────────┴─────────────┴─────────────╯
+&kp Q      &kp W  &kp E          &kp R             &kp T      &kp Y              &kp U        &kp I      &kp O      &kp P
+&kp A      &kp S  &kp D          &kp F             &kp G      &kp H              &kp J        &kp K      &kp L      &kp BSPC
+&kp SLASH  &kp Z  &kp X          &kp C             &kp V      &kp B              &kp N        &kp M      &kp COMMA  &kp PERIOD
+                  &mt LCTRL ESC  &mt LEFT_GUI F19  &lt 1 TAB  &mt RIGHT_ALT RET  &lt 2 SPACE  &kp ENTER
             >;
+        };
+
+        NUM {
+            bindings = <
+&trans  &kp F9  &kp F10  &kp F11  &kp F12  &trans  &kp N7  &kp N8  &kp N9  &trans
+&trans  &kp F5  &kp F6   &kp F7   &kp F8   &trans  &kp N4  &kp N5  &kp N6  &trans
+&trans  &kp F1  &kp F2   &kp F3   &kp F4   &trans  &kp N1  &kp N2  &kp N3  &trans
+                &trans   &trans   &trans   &trans  &kp N0  &trans
+            >;
+
+            label = "NUM";
+        };
+
+        NAV {
+            bindings = <
+&trans  &trans        &kp LG(UP)    &trans         &trans  &trans  &trans    &kp UP    &kp LBKT   &kp RBKT
+&trans  &kp LG(LEFT)  &kp LG(DOWN)  &kp LG(RIGHT)  &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans
+&trans  &trans        &trans        &trans         &trans  &trans  &trans    &trans    &trans     &trans
+                      &trans        &trans         &trans  &trans  &trans    &trans
+            >;
+
+            label = "NAV";
         };
     };
 };
