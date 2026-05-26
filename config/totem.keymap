@@ -3,15 +3,56 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    behaviors {
+        mission_ctrl_i: mission_ctrl_i {
+            compatible = "zmk,behavior-mod-morph";
+            label = "MISSION_CTRL_I";
+            bindings = <&kp I>, <&kp UP>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+            keep-mods = <(MOD_RCTL|MOD_LCTL)>;
+        };
+
+        sk_slash_shft: sk_slash_shft {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SK_SLASH_SHFT";
+            bindings = <&sk>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+        };
+
+        ctrl_o_lbkt: ctrl_o_lbkt {
+            compatible = "zmk,behavior-mod-morph";
+            label = "CTRL_O_LBKT";
+            bindings = <&kp O>, <&kp LBKT>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+            keep-mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
+        ctrl_p_rbkt: ctrl_p_rbkt {
+            compatible = "zmk,behavior-mod-morph";
+            label = "CTRL_P_RBKT";
+            bindings = <&kp P>, <&kp RBKT>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+            keep-mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         base_layer {
             bindings = <
-&kp Q      &kp W  &kp E          &kp R             &kp T      &kp Y              &kp U        &kp I      &kp O      &kp P
-&kp A      &kp S  &kp D          &kp F             &kp G      &kp H              &kp J        &kp K      &kp L      &kp BSPC
-&kp SLASH  &kp Z  &kp X          &kp C             &kp V      &kp B              &kp N        &kp M      &kp COMMA  &kp PERIOD
-                  &mt LCTRL ESC  &mt LEFT_GUI F19  &lt 1 TAB  &mt RIGHT_ALT RET  &lt 2 SPACE  &kp ENTER
+&kp Q                       &kp W  &kp E          &kp R             &kp T      &kp Y              &kp U        &kp I      &ctrl_o_lbkt  &ctrl_p_rbkt
+&kp A                       &kp S  &kp D          &kp F             &kp G      &kp H              &kp J        &kp K      &kp L         &kp BSPC
+&sk_slash_shft LSHFT SLASH  &kp Z  &kp X          &kp C             &kp V      &kp B              &kp N        &kp M      &kp COMMA     &kp PERIOD
+                                   &mt LCTRL ESC  &mt LEFT_GUI F19  &lt 1 TAB  &mt RIGHT_ALT RET  &lt 2 SPACE  &kp ENTER
             >;
         };
 
